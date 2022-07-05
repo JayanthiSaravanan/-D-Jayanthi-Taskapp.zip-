@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> User Details </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <h3> User Details </h3>
+        <form onsubmit="userDetails()">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <label for="name">User Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your Name" autofocus><br><br>
+
+
+                    <label for="email">Email-Id:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your Email-Id" autofocus><br><br>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your Password"><br><br>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+
+    </div>
+
+
+    </form>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+        integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <script>
+        function userDetails() {
+            event.preventDefault();
+            const name = document.querySelector("#name").value;
+            const email = document.querySelector("#email").value;
+            const password = document.querySelector("#password").value;
+
+            //alert('result:' + email  + password );
+
+            // alert('result:' + email);
+            // alert('result:' + password);
+            console.log('result:' + name);
+            console.log('result:' + email);
+            console.log('result:' + password);
+
+            if (name == null || name.trim() == "") {
+                alert("enter the valid name")
+                return false;
+            }
+
+
+            else if (email == null || email.trim() == "") {
+                alert("enter the valid emailid")
+                return false;
+
+            }
+
+            else if (password == null || password.trim() == "") {
+                alert(" enter the valid password ")
+                return false;
+            }
+
+            alert('successfully Loggedin');
+            const userobj = {
+                name: name,
+                email: email,
+                password: password,
+                role: "USER",
+                created_date: new Date().toJSON(),
+                modified_date: new Date().toJSON()
+
+            };
+        
+
+        console.log(userobj);
+        const url = "http://localhost:3000/tasks"
+
+        axios.post(url, userobj).then(res => {
+
+            console.log(res.data);
+        });
+    }
+    </script>
+    <!-- <script>  
+    function validateform(){  
+    var name=document.myform.name.value;  
+    var password=document.myform.password.value;  
+      
+    if (name==null || name==""){  
+      alert("Name can't be blank");  
+      return false;  
+    }else if(password.length<6){  
+      alert("Password must be at least 6 characters long.");  
+      return false;  
+      }  
+    }  
+    </script>  
+    <body>  
+    <form name="myform" method="post" action="http://www.javatpoint.com/javascriptpages/valid.jsp" onsubmit="return validateform()" >  
+    Name: <input type="text" name="name"><br/>  
+    Password: <input type="password" name="password"><br/>  
+    <input type="submit" value="register">  
+    </form>  
+    </body>
+    </html>
+ -->
+
+</body>
+
+</html>
